@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- 引入组件库 -->
+<!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        *{
+            margin:0px;
+            padding: 0px;
+        }
+        .masin{
+            margin-top: 50px;
+            text-align: center;
+        }
+        /* .main_left1{
+            padding-top: 20px;
+            border-right: 1px solid #DEDFE0;
+            height: 100%;
+            width: 20%;
+            background-color: #F8F9FA;
+            position: absolute;
+        } */
+        /* .main_right{
+            position: absolute;
+                
+        } */
+        .nav-link{
+            color: #333364;
+        }
+        .active{
+            color: #007BFE;
+        }
+        /* .tabshow{
+            display:block;
+        } */
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- //头部导航栏 v-on:click="showtab" -->
+        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">A_plus</a>
+        </nav>
+        <div id="tabs_nav">
+            <div class="row masin">
+                <div class="col-md-2 d-none d-md-block bg-light sidebar" id="app">
+                    <ul class="nav flex-column main_left" >
+                        <li class="nav-item" v-for="(item,index) in navlist" :key="item.id">
+                            <a :class="navindex === index? 'nav-link active':'nav-link'"  href="#"  @click ="changeTab(index,item.src)" >{{item.title}}</a>
+                        </li>
+                    </ul>
+                    <!-- <ul class="nav flex-column main_left" id="tabs_nav">
+                        <li class="nav-item">
+                        <a class="nav-link active" data-src="index.html" href="#">Active</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="#"  data-src="user_center.html">Link</a>
+                        </li>
+                        <li class="nav-item">
+                        
+                        <a class="nav-link" href="#" v-on:click="isshow">用户管理</a> -->
+                        <!-- 二级导航 -->
+<!--                         
+                        </li>
+                    </ul> -->
+                </div>
+                <div class="col-md-10 main_right">
+                    <div >
+                        <iframe frameborder="0" scrolling="no" style="width: 100%;height: 500px;" :src="iframeSrc" id="aa"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+<script>
+    var nalist = new Vue({
+        el:'#tabs_nav',
+        data:{
+            foo:false,
+            navlist:[{
+                    id: 1,
+                    title:'active',
+                    src:'index.html'
+                },
+                {
+                    id: 2,
+                    title:'active2',
+                    src:'user_center.html'
+                },
+                {
+                    id: 3,
+                    title:'active3',
+                    src:'index.html'
+                },
+                {
+                    id: 4,
+                    title:'active4',
+                    src:'index.html'
+                }
+            ],
+            // iframe 中src的值
+            iframeSrc: 'index.html',
+            navindex:0
+        },
+        methods:{
+            changeTab(index,e) {
+                this.iframeSrc = e;
+                this.navindex = index;
+                
+            },
+        }
+    })
+</script>
+<script>
+    // window.onload = function(){
+    //     var ifshow = 1;
+    // }
+    
+    // $(function(){
+    //     //获取点击事件
+    //     $(".main_left li a").on("click",function(){
+    //         var address =$(this).attr("data-src");
+    //         //修改iframe的src
+    //         $("iframe").attr("src",address);
+    //         //获取导航栏信息
+    //         var myNav = document.getElementById("tabs_nav").getElementsByTagName("a");
+    //         for(var i = 0 ; i<$(".main_left li a").length;i++){
+    //             //判断是否导航栏的src和iframe的src是否一致，修改样式
+    //             if(myNav[i].getAttribute("data-src") != $("iframe").attr("src")){
+    //                 myNav[i].className="nav-link";
+    //             }else{
+    //                 myNav[i].className="nav-link active";
+    //             }
+    //         }
+    //     });
+    // });
+</script>
+</html>

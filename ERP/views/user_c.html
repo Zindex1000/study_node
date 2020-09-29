@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js">
+    
+    </script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="node">
+        <div>
+            {{data[0].id}}
+        </div>
+    </div>
+
+</body>
+
+<script>
+    
+    $.ajax({
+        type: 'get',
+        url: 'http://localhost:3000/123',
+        data:{
+            key:1025
+        },
+        success: function (data1) {
+            console.log(data1);
+            new Vue({
+                el: '#node',
+                data: data1
+            })
+        },
+        error: function () {
+            console.log('error');
+        }
+    })
+</script>
+</html>
